@@ -1,0 +1,213 @@
+
+@font-face {
+    font-family: "poppins";
+    src: url('Poppins-regular.ttf');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins";
+}
+
+body{
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+
+section{
+    position: relative;
+}
+section#details-column{
+    background: #141417;
+}
+
+section#exam-column #question-container{
+    position: relative;
+    top: 50px;
+    left: 50px;
+    width: 80%;
+    height: 70vh;
+    overflow-y: hidden;
+    padding: 0px 20px;
+}
+
+section#exam-column #question-container #slider{
+    width: 100%;
+}
+
+section#exam-column #question-container #slider form{
+    position: relative;
+}
+
+section#exam-column #question-container #question-box{
+    padding: 20px;
+    padding-bottom: 120px;
+    width: 100%;
+    position: relative;
+}
+
+section#exam-column #question-container .Opt{
+    padding: 15px 20px;
+    border: 2px solid rgb(87, 252, 87);
+    border-radius: 7px;
+    margin-bottom: 15px;
+    width: 80%;
+    transition: all .5s ease-in-out;
+}
+
+section#exam-column #question-container .Opt:nth-of-type(4){
+    margin-bottom: 50px;
+}
+
+section#exam-column #question-container .Opt:hover{
+    background-color: #cefdce;
+    transform: scale(1.02);
+}
+
+.optWrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+input:checked + label{
+    background-color: #cefdce;
+}
+
+section#exam-column .next-prev-btns{
+    position: relative;
+    left: 50px;
+    top:50px;
+    width: 100%;
+    padding: 40px 0px;
+}
+
+section#exam-column .next-prev-btns button{
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 7px;
+    font-weight: 600;
+    font-size: 15px;
+    margin-right: 15px;
+}
+
+section#exam-column .next-prev-btns button.nextBtn{
+    background: #93fe93;
+    transition: all .3s ease-in-out;
+}
+
+section#exam-column .next-prev-btns button.nextBtn:hover{
+    background: #7bd57b;
+    transform: scale(1.01);
+}
+
+section#exam-column .next-prev-btns button.prevBtn{
+    background: #fe9393;
+    transition: all .3s ease-in-out;
+}
+
+section#exam-column .next-prev-btns button.prevBtn:hover{
+    background: #d27a7a;
+    transform: scale(1.01);
+}
+
+
+section#details-column{
+    position: relative;
+    text-align: center;
+}
+
+section#details-column #user-icon{
+    position: relative;
+    height: 250px;
+    width: 100%;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+section#details-column #user-icon i{
+    font-size: 90px;
+    color: #93fe93;
+}
+
+section#details-column #dynamic-name{
+    position: relative;
+    top:20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #c9d5c9;
+    padding: 20px 0px 15px 0px;
+    margin-top: 20px;
+}
+
+section#details-column #dynamic-reg{
+    position: relative;
+    top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #c9d5c9;
+    padding: 00px 0px 20px 0px;
+    opacity: .6;
+}
+
+section#details-column div.progress-wrapper{
+    width: 80%;
+    height: 100px;
+    position: absolute;
+    bottom: 50px;
+    left: 10%;
+    background: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+}
+
+section#details-column div.progress-wrapper .progress-box{
+    height: 25px;
+    width: 25px;
+    background: #e9f8e9;
+    position: relative;
+    margin: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    display: grid;
+    place-items: center;
+    color: #0b140b;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.submitTest{
+    outline: none;
+    border: none;
+    color: #fff;
+    background: #141417;
+    padding: 10px 20px;
+    border-radius: 7px;
+    position: absolute;
+    right: 20px;
+    top:50px;
+}
+
+#spinner{
+    font-size: 20px;
+    font-weight: 600;
+    animation: 1s spinner infinite ease-in-out ;
+}
+
+@keyframes spinner{
+    100%{
+        transform: rotate(360deg);
+    }
+}

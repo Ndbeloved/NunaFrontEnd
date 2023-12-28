@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" href="modifiedFontAwesome/css/all.css"/>
+    <title>CBT EXAM</title>
+    <style>
+        @font-face {
+            font-family: "Poppins";
+            src: url('Poppins-regular.ttf');
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins';
+        }
+        body{
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            height: 100vh;
+            width: 100%;
+            overflow-y: hidden;
+        }
+
+        #watermark{
+            position: absolute;
+            left: 50%;
+            top:50%;
+            height: 60vh;
+            width: auto;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+        }
+
+        section.main-wrapper{
+            position: relative;
+            background: #141417;
+            
+        }
+
+        section.details-wrapper{
+            position: relative;
+            background: #1d1d21;
+            display: flex;
+            justify-content: center;
+        }
+
+        section.main-wrapper #welcome-message{
+            position: relative;
+            padding: 50px 0px 0px 80px;
+        }
+
+        section.main-wrapper #welcome-message h1{
+            color: #e3e3e3;
+            font-size: 32px;
+            font-weight: 100;
+            padding-bottom: 50px;
+        }
+
+        section.main-wrapper #welcome-message h1 #dynamic-name{
+            font-size: 28px;
+        }
+
+        p#instructions{
+            width: 50%;
+            font-size: 17px;
+            color: #c4c4c4;
+            font-weight: 300;
+            line-height: 40px;
+        }
+        ul li{
+            font-size: 15px;
+            color: #c4c4c4;
+            font-weight: 300;
+            line-height: 40px;
+        }
+        ul{
+            font-size: 15px;
+            color: #c4c4c4;
+            font-weight: 300;
+        }
+
+        button#login{
+            outline: none;
+            border: none;
+            background: #7cfd7c;
+            font-size: 16px;
+            padding: 8px 25px;
+            border-radius: 7px;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            cursor: pointer;
+        }
+        button#login:hover{
+            background: #63c963;
+        }
+
+        .student-details{
+            position: relative;
+            top:80px;
+        }
+
+        .student-details i{
+            font-size: 120px;
+            color: #63c963;
+            padding: 20px 0px 50px 0px;
+            opacity: .5;
+            transform: translateX(25%);
+        }
+
+        .student-details p{
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 5px;
+            letter-spacing: 3px;
+        }
+        
+    </style>
+</head>
+<body>
+    <section class="main-wrapper">
+        <img src="Images/school-logo.png" id="watermark"/>
+
+        <div id="welcome-message">
+            <h1>Welcome, <span id="dynamic-name"></span></h1>
+            <p id="instructions">
+                This is a computer Based Examination, be sure to adhere to the following instructions
+                <ul>
+                    <li>Use Navigation buttons to move between questions, review answers, or revisit skipped questions</li>
+                    <li>Be mindful of the time allocated for the test</li>
+                    <li>Click on the "submit Test" button to submit. Or when your time elaspes, your test will auto submit</li>
+                    <li>Verify that the test has successfully been submitted before closing the window</li>
+                    <li>If faced with any technical issue during the test, contact the examiners to assist you</li>
+                    <li>if ready, click the start button to start your examination, goodluck</li>
+                </ul>
+            </p>
+        </div>
+    </section>
+
+    <section class="details-wrapper">
+        <div class="student-details">
+            <i class="fa-solid fa-user" id="icon"></i>
+            <p id="student-reg">Reg: <span id="dynamic-reg"></span></p>
+            <p>Course: <span id="dynamic-course"></span></p>
+        </div>
+        <button id="login">Start <i class="fa-solid fa-proceed"></i></button>
+    </section>
+
+
+    <script>
+        //checks if exam is started
+        if(localStorage.getItem('token') && localStorage.getItem('isStarted') == 'true'){
+            window.location.href = 'index.html'
+        }
+        if(localStorage.getItem('token') == null || localStorage.getItem('token') == 'undefined'){
+            window.location.href = 'login.html';
+        }
+        const startBtn = document.getElementById('login');
+        startBtn.addEventListener('click', ()=>{
+            window.location.href = 'index.html';
+        })
+
+        const studentName = document.getElementById('dynamic-name');
+        const studentReg = document.getElementById('dynamic-reg')
+        const studentCourse = document.getElementById('dynamic-course')
+        let student;
+        if(localStorage.getItem('student') == null || localStorage.getItem('student') == 'undefined'){
+            let x = 0 //do nothing
+        }else{
+            student = JSON.parse(localStorage.getItem('student'))
+        }
+        studentName.innerHTML = student.name
+        studentReg.innerHTML = student.reg
+        studentCourse.innerHTML = localStorage.getItem('course')
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" href="modifiedFontAwesome/css/all.css"/>
+    <script src="login.js" defer></script>
+    <title>Login</title>
+    <style>
+        @font-face {
+            font-family: "Poppins";
+            src: url('Poppins-regular.ttf');
+        }
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Poppins";
+        }
+
+        body{
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            position: relative;
+            height: 100vh;
+            width: 100%;
+        }
+
+        section#school-logo-wrapper{
+            position: relative;
+            display: grid;
+            place-items: center;
+            background: #1d1d21;
+        }
+
+        section#school-logo-wrapper img{
+            position: relative;
+            width: 70%;
+            height: auto;
+        }
+
+        section#main-wrapper{
+            position: relative;
+            background: #141417;
+            display: grid;
+            place-items: center;
+            width: 100%;
+        }
+
+        section#main-wrapper form{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            
+        }
+        section#main-wrapper form input{
+            outline: none;
+            border: none;
+            background: #1c1c21;
+            padding: 10px 20px;
+            font-size: 20px;
+            color: #626272;
+            border: 1px solid #7cfd7c;
+            margin-bottom: 18px;
+            border-radius: 10px;
+        }
+
+        section#main-wrapper form button{
+            max-width: 150px;
+            width: 150px;
+            border: none;
+            outline: none;
+            padding: 10px 25px;
+            color:#141417;
+            background: #7cfd7c;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        #spinner{
+            font-size: 20px;
+            font-weight: 600;
+            animation: 1s spinner infinite ease-in-out ;
+        }
+
+        @keyframes spinner{
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="school-logo-wrapper">
+        <img src="Images/school-logo.png" />
+    </section>
+    <section id="main-wrapper">
+        <form action="/" method="post" id="form">
+            <input name="reg" id="reg-input" placeholder="Registration number" required/>
+            <button type="submit" id="login-btn">Login</button>
+        </form>
+    </section>
+</body>
+</html>
