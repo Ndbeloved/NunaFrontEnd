@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', async()=>{
     const studentName = document.getElementById('dynamic-name');
     const studentReg = document.getElementById('dynamic-reg');
     const successMessage = document.getElementById('success-message');
-    const errorMessage = document.getElementById('error-message')
+    const errorMessage = document.getElementById('error-message');
+    const submitBtn = document.querySelector('.submitTest');
     async function getQuestions(){
         try{
             const response = await fetch('http://localhost:3000/cbt-exam', {
@@ -82,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
     studentName.innerHTML = student.name 
     studentReg.innerHTML = student.reg 
 
-
+    const persistedData = localStorage.getItem('answers')
     const questionSlide = document.getElementById('slider');
     const nextBtn = document.querySelector('.nextBtn');
     const prevBtn = document.querySelector('.prevBtn');
@@ -191,7 +192,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
         })
     }
 
-    const persistedData = localStorage.getItem('answers')
+    
     if(persistedData == null || persistedData == 'undefined'){
         let x = 1
     }
@@ -200,25 +201,48 @@ document.addEventListener('DOMContentLoaded', async()=>{
         persist(parsedData)
     }
 
-    function submitAnswers(answers){
-        let messageBox = document.querySelector(".success-dynamic-message");
-        messageBox.innerHTML = "finished exam successfully"
-        errorMessage.classList.remove('visible')
-        successMessage.classList.add('visible')
-        setInterval(()=>{
-            localStorage.clear()
-            window.location.href = 'login.html'
-        },3000)
+    async function submitAnswers(answers){
+        try{
+            console.log(answers)
+            const URL = 'http://localhost:3000/cbt-exam/submit';
+            const response = await fetch(URL, {
+                method: 'post',
+                headers:{
+                    'Authorization': localStorage.getItem('token'),
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({answers: answers}),
+            })
+
+            if(response.ok){
+                let messageBox = document.querySelector(".success-dynamic-message");
+                messageBox.innerHTML = "finished exam successfully"
+                errorMessage.classList.remove('visible')
+                successMessage.classList.add('visible')
+                submitBtn.innerHTML = "Submit Test"
+            }
+            setInterval(()=>{
+                localStorage.clear()
+                window.location.href = 'login.html'
+            },3000)
+        }catch(err){
+            let messageBox = document.querySelector(".error-dynamic-message");
+            messageBox.innerHTML = "Check connection"
+            errorMessage.classList.add('visible')
+            successMessage.classList.remove('visible')
+            submitBtn.innerHTML = "Submit Test"
+        }
     }
 
     //Handles exam submission
-    const submitBtn = document.querySelector('.submitTest');
-    submitBtn.addEventListener('click', ()=>{
+    submitBtn.addEventListener('click', async()=>{
         const confirmation = window.confirm("Clicking yes will finish the exam, proceed?")
         if(confirmation){
             submitBtn.innerHTML = `<i class="fa-solid fa-spinner" id="spinner"></i>`
-            let answers = JSON.parse(persistedData);
-            submitAnswers(answers)
+            console.log(`persist: ${persistedData}`)
+            let answers = JSON.parse(localStorage.getItem("answers"));
+            console.log(`answers: ${answers}`)
+            await submitAnswers(answers)
         }
     })
 
@@ -235,7 +259,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
         stopTime = new Date(localStorage.getItem('stopageTime'));
     }
     let timeDifference;
-    const interval = setInterval(function(){
+    const interval = setInterval(async function(){
         startTime = new Date()
         timeDifference = Math.floor((stopTime - startTime) / 60000);
         dynamicTime.innerHTML = timeDifference+'min'
@@ -243,7 +267,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
         if(timeDifference == 0){
             clearInterval(interval)
             let answers = JSON.parse(persistedData);
-            submitAnswers(answers)
+            await submitAnswers(answers)
         }
         progressBar.style.setProperty('--degree', percentage+'deg');
     },1000)
