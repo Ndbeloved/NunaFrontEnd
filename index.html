@@ -19,6 +19,8 @@
         <div id="student-name"><span id="dynamic-name"></span></div>
         <div id="student-reg"><span id="dynamic-reg"></span></div>
 
+        
+
         <!--Progress boxes-->
         <div class="progress-wrapper" id="progress-wrapper">
 
@@ -27,18 +29,39 @@
 
 
     <section id="exam-column">
-        <div id="question-container">
-            
-        </div>
+            <div id="question-container">
+                <div class="extra-wrapper"></div>
+            </div>
 
-        <div class="next-prev-btns">
-            <button class="prevBtn">Previous</button>
-            <button class="nextBtn">Next</button>
-        </div>
+            <div class="next-prev-btns">
+                <button class="prevBtn">Previous</button>
+                <button class="nextBtn">Next</button>
+            </div>
 
-        <div class="actions">
-            <button class="submitTest">Submit Test</button>
-        </div>
+            <div class="actions">
+                <button class="submitTest">Submit Test</button>
+            </div>
+            <!--time functionality-->
+            <div class="progress-bar">
+                <div class="progress" id="progress">
+                    <div id="dynamic-time"></div>
+                </div>
+            </div>
     </section>
+
+    <!--success message-->
+    <div class="message" id="success-message">
+        <i class="fa-solid fa-check"></i>
+        <div id="dynamic-message" class="success-dynamic-message">
+            this is a default message
+        </div>
+    </div>
+
+    <div class="message" id="error-message">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <div id="dynamic-message" class="error-dynamic-message">
+            this is a default message
+        </div>
+    </div>
 </body>
 </html>

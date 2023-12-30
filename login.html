@@ -89,6 +89,44 @@
                 transform: rotate(360deg);
             }
         }
+
+        .message{
+            position: absolute;
+            height: 80px;
+            width: 500px;
+            bottom: 0;
+            right: -500px;
+            border-top-left-radius: 14px;
+            display: none;
+            transition: right 1s ease-in-out;
+        }
+
+        .message.visible{
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            place-items: center;
+            right: 0px;
+            transition: right 1s ease-in-out;
+        }
+
+        .message i{
+            font-size: 25px;
+        }
+
+        #success-message{
+            background: #c4fcc4;
+            border: 3px solid #3b623b;
+        }
+
+        #error-message{
+            background: #fcc4c4;
+            border: 3px solid #623b3b;
+        }
+
+        #dynamic-message{
+            width: 100%;
+            padding: 0px 0px 0px 15px;
+        }
     </style>
 </head>
 <body>
@@ -100,6 +138,21 @@
             <input name="reg" id="reg-input" placeholder="Registration number" required/>
             <button type="submit" id="login-btn">Login</button>
         </form>
+
+        <!--success message-->
+        <div class="message" id="success-message">
+            <i class="fa-solid fa-check"></i>
+            <div id="dynamic-message" class="success-dynamic-message">
+                this is a default message
+            </div>
+        </div>
+
+        <div class="message" id="error-message">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div id="dynamic-message" class="error-dynamic-message">
+                this is a default message
+            </div>
+        </div>
     </section>
 </body>
 </html>

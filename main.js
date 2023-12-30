@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
     }else{
         localStorage.setItem('isStarted', 'true')
     }
-    const questionContainer = document.getElementById('question-container')
+    const questionContainer = document.querySelector('.extra-wrapper')
     const questionBox = document.getElementById('question-box');
     const optA = document.getElementById('OptA');
     const optB = document.getElementById('OptB');
@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', async()=>{
     const optD = document.getElementById('OptD');
     const studentName = document.getElementById('dynamic-name');
     const studentReg = document.getElementById('dynamic-reg');
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message')
     async function getQuestions(){
         try{
             const response = await fetch('http://localhost:3000/cbt-exam', {
@@ -85,21 +87,27 @@ document.addEventListener('DOMContentLoaded', async()=>{
     const nextBtn = document.querySelector('.nextBtn');
     const prevBtn = document.querySelector('.prevBtn');
     let questionIndex = 0;
-    let questionHeight = questionContainer.children[questionIndex].offsetHeight;
+    let questionHeight = questionContainer.children[questionIndex].offsetWidth;
+    
 
     nextBtn.addEventListener('click',()=>{
-        questionHeight = questionContainer.children[questionIndex].offsetHeight;
+        questionHeight = questionContainer.children[questionIndex].offsetWidth;
+        // let previousQuestion = questionContainer.children[questionIndex]
+        // let visibleQuestion = questionContainer.children[questionIndex + 1]
+        // previousQuestion.classList.remove('visible')
+        // visibleQuestion.classList.add('visible');
+        // console.log(visibleQuestion)
         if(questionIndex >= questionContainer.children.length -1){
             let x = 1
         }else{
             questionIndex++;
         }
         let newPosition = questionIndex * questionHeight;
-        questionContainer.scrollTo({top:newPosition, behavior:'auto'})
+        questionContainer.scrollTo({left:newPosition, behavior:'auto'})
     })
 
     prevBtn.addEventListener('click',()=>{
-        questionHeight = questionContainer.children[questionIndex].offsetHeight;
+        questionHeight = questionContainer.children[questionIndex].offsetWidth;
         if(questionIndex <= 0){
             let x=0
         }else{
@@ -107,7 +115,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
         }
         
         let newPosition = questionIndex * questionHeight;
-        questionContainer.scrollTo({top:newPosition, behavior:'auto'})
+        questionContainer.scrollTo({left:newPosition, behavior:'auto'})
     })
 
     //progress boxes
@@ -122,9 +130,9 @@ document.addEventListener('DOMContentLoaded', async()=>{
     //progress box function
     function getIndex(index){
         questionIndex = index;
-        questionHeight = questionContainer.children[questionIndex].offsetHeight;
+        questionHeight = questionContainer.children[questionIndex].offsetWidth;
         let newPosition = questionIndex * questionHeight;
-        questionContainer.scrollTo({top:newPosition, behavior:'auto'})
+        questionContainer.scrollTo({left:newPosition, behavior:'auto'})
     }
 
     //click progress boxes to travel questions
@@ -193,7 +201,10 @@ document.addEventListener('DOMContentLoaded', async()=>{
     }
 
     function submitAnswers(answers){
-        console.log(answers)
+        let messageBox = document.querySelector(".success-dynamic-message");
+        messageBox.innerHTML = "finished exam successfully"
+        errorMessage.classList.remove('visible')
+        successMessage.classList.add('visible')
         setInterval(()=>{
             localStorage.clear()
             window.location.href = 'login.html'
@@ -203,8 +214,37 @@ document.addEventListener('DOMContentLoaded', async()=>{
     //Handles exam submission
     const submitBtn = document.querySelector('.submitTest');
     submitBtn.addEventListener('click', ()=>{
-        submitBtn.innerHTML = `<i class="fa-solid fa-spinner" id="spinner"></i>`
-        let answers = JSON.parse(persistedData);
-        submitAnswers(answers)
+        const confirmation = window.confirm("Clicking yes will finish the exam, proceed?")
+        if(confirmation){
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner" id="spinner"></i>`
+            let answers = JSON.parse(persistedData);
+            submitAnswers(answers)
+        }
     })
+
+    //handles time
+    const progressBar = document.getElementById('progress');
+    const dynamicTime = document.getElementById('dynamic-time')
+    let time = 30; //Exam time in minutes, will be fetching from backend database
+    let startTime  = new Date();
+    let stopTime;
+    if(localStorage.getItem('stopageTime') == null || localStorage.getItem('stopageTime') == 'undefined'){
+        stopTime = new Date(startTime.getTime() + (time * 60000));
+        localStorage.setItem('stopageTime', stopTime)
+    }else{
+        stopTime = new Date(localStorage.getItem('stopageTime'));
+    }
+    let timeDifference;
+    const interval = setInterval(function(){
+        startTime = new Date()
+        timeDifference = Math.floor((stopTime - startTime) / 60000);
+        dynamicTime.innerHTML = timeDifference+'min'
+        let percentage = (timeDifference / time) * 360;
+        if(timeDifference == 0){
+            clearInterval(interval)
+            let answers = JSON.parse(persistedData);
+            submitAnswers(answers)
+        }
+        progressBar.style.setProperty('--degree', percentage+'deg');
+    },1000)
 })

@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', async()=>{
     localStorage.clear();
     const URL = 'http://localhost:3000/cbt-exam/login';
     const form = document.getElementById('form');
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message')
     form.addEventListener('submit', async(e)=>{
         e.preventDefault();
         const loginBtn = document.getElementById('login-btn')
@@ -25,21 +27,37 @@ document.addEventListener('DOMContentLoaded', async()=>{
 
             if(response.ok){
                 const data = await response.json()
-                console.log(data)
+                let messageBox = document.querySelector(".success-dynamic-message");
+                messageBox.innerHTML = "logged in successfully"
+                errorMessage.classList.remove('visible')
+                successMessage.classList.add('visible')
                 localStorage.setItem('token', data.token)
                 localStorage.setItem('student',JSON.stringify(data.student))
                 localStorage.setItem('course', data.currentCourseName)
                 setInterval(()=>{
+                    successMessage.classList.remove('visible')
                     window.location.href = 'confirm-login.html'
+                    loginBtn.innerHTML = "Login"
                 }, 3000)
             }
             else{
+                loginBtn.innerHTML = "Login"
                 const data = await response.json()
-                console.log(data)
-                console.log("couldn't login")
+                let messageBox = document.querySelector(".error-dynamic-message");
+                messageBox.innerHTML = data.message;
+                errorMessage.classList.add('visible')
+                // setInterval(()=>{
+                //     errorMessage.classList.remove('visible')
+                // }, 3000)
             }
         }catch(err){
-            console.log('check internet connection')
+            loginBtn.innerHTML = "Login";
+            let messageBox = document.querySelector(".error-dynamic-message");
+            messageBox.innerHTML = 'check connection';
+            errorMessage.classList.add('visible')
+            // setInterval(()=>{
+            //     errorMessage.classList.remove('visible')
+            // }, 3000)
         }
     })
 })
