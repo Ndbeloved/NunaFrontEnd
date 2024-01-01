@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
     let examTime = 20;
     async function getQuestions(){
         try{
-            const response = await fetch('http://localhost:3000/cbt-exam', {
+            const response = await fetch('https://nuna-cbt-exams.onrender.com/cbt-exam', {
                 method: 'get',
                 headers:{
                     Authorization: localStorage.getItem('token')
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
 
     async function submitAnswers(answers){
         try{
-            const URL = 'http://localhost:3000/cbt-exam/submit';
+            const URL = 'https://nuna-cbt-exams.onrender.com/cbt-exam/submit';
             const response = await fetch(URL, {
                 method: 'post',
                 headers:{

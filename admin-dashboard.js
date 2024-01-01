@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async()=>{
     //verifies Jwt
-    const urlVerify = 'http://localhost:3000/official'
+    const urlVerify = 'https://nuna-cbt-exams.onrender.com/official'
     const token = localStorage.getItem('token')
     if(token == null || token == 'undefined' || token == undefined){
         window.location.href = 'admin-login.html';
@@ -44,12 +44,12 @@ document.addEventListener('DOMContentLoaded', async()=>{
     
 
     //urls
-    const urlGetCoursesRegistered = 'http://localhost:3000/official/registered-courses';
-    const urlOpenCourse = 'http://localhost:3000/official/open-course';
-    const urlCloseCourse = 'http://localhost:3000/official/close-course';
-    const urlSetQuestion = 'http://localhost:3000/official/create';
-    const urlRegisterStudent = 'http://localhost:3000/official/register/student';
-    const urlScanStudent = 'http://localhost:3000/official/scan/student';
+    const urlGetCoursesRegistered = 'https://nuna-cbt-exams.onrender.com/official/registered-courses';
+    const urlOpenCourse = 'https://nuna-cbt-exams.onrender.com/official/open-course';
+    const urlCloseCourse = 'https://nuna-cbt-exams.onrender.com/official/close-course';
+    const urlSetQuestion = 'https://nuna-cbt-exams.onrender.com/official/create';
+    const urlRegisterStudent = 'https://nuna-cbt-exams.onrender.com/official/register/student';
+    const urlScanStudent = 'https://nuna-cbt-exams.onrender.com/official/scan/student';
 
     //open course section variables
     const openCoursesList = document.querySelector('.open-course-list-wrapper');
@@ -345,3 +345,6 @@ document.addEventListener('DOMContentLoaded', async()=>{
         window.location.href = 'admin-login.html';
     })
 })
+
+//Dummy Reg
+//2023121696

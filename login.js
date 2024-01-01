@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
         window.location.href = 'index.html'
     }
     localStorage.clear();
-    const URL = 'http://localhost:3000/cbt-exam/login';
+    const URL = 'https://nuna-cbt-exams.onrender.com/cbt-exam/login';
     const form = document.getElementById('form');
     const successMessage = document.getElementById('success-message');
     const errorMessage = document.getElementById('error-message')
