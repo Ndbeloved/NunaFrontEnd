@@ -1,0 +1,476 @@
+@font-face {
+    font-family: "poppins";
+    src: url('Poppins-regular.ttf');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins";
+    user-select: none;
+    user-select: none;
+}
+
+body{
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    position: relative;
+    width: 100%;
+}
+
+section{
+    position: relative;
+}
+
+section.action-bar{
+    background: #141417;
+    min-height: 100vh;
+}
+
+section.action-bar .fixed{
+    position: fixed;
+    width: 290px;
+}
+
+section.action-bar .profile-details-wrapper{
+    position: relative;
+    width: 90%;
+    padding: 15px;
+    padding-top: 70px;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+}
+
+section.action-bar .profile-details-wrapper #profile-image{
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 50px;
+    background: #212126;
+}
+
+section.action-bar .profile-details-wrapper #profile-name{
+    position: relative;
+    padding: 0px 7px;
+}
+
+section.action-bar .profile-details-wrapper #profile-name p#name{
+    color: #cacaeb;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+section.action-bar .profile-details-wrapper #profile-name p#role{
+    color: #cacaeb;
+    opacity: .5px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+section.action-bar .quick-links-wrapper{
+    padding: 15px;
+    padding: 25px;
+    position: relative;
+}
+
+section.action-bar .quick-links-wrapper .flex{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    transition: .3s all ease-in;
+    padding: 10px 10px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+section.action-bar .quick-links-wrapper .flex:hover{
+    background: #2b2b31;
+}
+
+section.action-bar .quick-links-wrapper .flex i{
+    font-size: 17px;
+    color: #cacaeb;
+}
+
+section.action-bar .quick-links-wrapper .flex p{
+    color: #cacaeb;
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 20px;
+}
+
+section.action-bar .quick-links-wrapper .flex.active{
+    background: #151161;
+}
+
+
+
+
+
+section.page-wrapper .dynamic{
+    position: relative;
+    padding: 40px;
+    padding-top: 60px;
+    padding-left: 50px;
+    display: none;
+}
+
+section.page-wrapper .dynamic.visible{
+    display: block;
+}
+
+
+section.page-wrapper .dynamic #header h1{
+    font-size: 30px;
+    font-weight: 700;
+    color: #141417;
+    padding-bottom: 60px;
+}
+
+section.page-wrapper .dynamic .course-table{
+    display: grid;
+    grid-template-columns: 150px 1fr 200px;
+    height: calc(100vh - 60px);
+    width: 80%;
+}
+
+section.page-wrapper .dynamic .course-table .columns{
+    position: relative;
+    text-align: center;
+    padding: 0px 20px;
+}
+
+section.page-wrapper .dynamic .course-table .columns #header{
+    font-size: 15px;
+    font-weight: 600;
+    color: #141417;
+    opacity: .6;
+    padding-bottom: 45px;
+}
+
+section.page-wrapper .dynamic .course-table .columns .rows{
+    padding-bottom: 25px;
+}
+
+section.page-wrapper .dynamic .course-table .columns .revoke-btn button{
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background: #1d1d32;
+    color: #cacaeb;
+}
+
+section.page-wrapper .dynamic .course-table .columns .aprroved-by{
+    height: 65px;
+    display: grid;
+    place-items: center;
+}
+
+section.page-wrapper .dynamic .course-table .columns .course-name{
+    height: 65px;
+    display: grid;
+    place-items: center;
+}
+
+section.page-wrapper .dynamic .course-table .columns .aprroved-by p{
+    color: #141417;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+section.page-wrapper .dynamic .course-table .columns .course-name p{
+    color: #141417;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+.open-course-wrapper .main-wrapper{
+    position: relative;
+    width: 85%;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+
+.open-course-wrapper .main-wrapper .open-course-list-wrapper{
+    position: relative;
+}
+
+.open-course-wrapper .main-wrapper .open-course-list-wrapper .open-course{
+    padding: 15px 15px 25px 15px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #141417;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.open-course-wrapper .main-wrapper .open-course-list-wrapper .open-course button{
+    margin-left: 20px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 20px;
+    background: #1d1d32;
+    color: #cacaeb;
+}
+
+.open-course-wrapper .main-wrapper .open-course-header{
+    font-size: 17px;
+    color: #141417;
+    opacity: .6;
+    font-weight: 700;
+    padding: 0px 15px 30px 15px;
+}
+
+
+.open-course-wrapper .main-wrapper .open-new-wrapper .close-course{
+    padding: 15px 15px 25px 15px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #141417;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.open-course-wrapper .main-wrapper .open-new-wrapper .close-course button{
+    margin-left: 20px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 20px;
+    background: #1d1d32;
+    color: #cacaeb;
+}
+
+
+.register-student-wrapper .main-wrapper{
+    position: relative;
+    width: 85%;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
+}
+
+
+.register-student-wrapper .main-wrapper .register-new-student-wrapper{
+    position: relative;
+    display: none;
+}
+
+.register-student-wrapper .main-wrapper .register-new-student-wrapper .register-student{
+    padding: 15px 15px 25px 15px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #141417;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.register-student-wrapper .main-wrapper .register-new-student-header{
+    font-size: 17px;
+    color: #141417;
+    opacity: .6;
+    font-weight: 700;
+    padding: 0px 15px 30px 15px;
+}
+
+
+.register-student-wrapper .main-wrapper .register-new-wrapper .register-student{
+    padding: 15px 15px 25px 15px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #141417;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.register-student-wrapper .main-wrapper .register-new-wrapper form{
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.register-student-wrapper .main-wrapper .register-new-wrapper form input{
+    padding: 10px 15px;
+    border-radius: 8px;
+    width: 100%;
+    position: relative;
+    outline: none;
+    border: 1px solid #141417;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.register-student-wrapper .main-wrapper .register-new-wrapper form button{
+    max-width: 200px;
+    padding: 10px 0px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    background: #151161;
+    color: #cacaeb;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+
+
+.scan-student-wrapper .main-wrapper{
+    position: relative;
+    width: 85%;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
+}
+
+
+.scan-student-wrapper .main-wrapper .scan-new-student-wrapper{
+    position: relative;
+    display: none;
+}
+
+.scan-student-wrapper .main-wrapper .scan-new-student-wrapper .scan-student{
+    padding: 15px 15px 25px 15px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #141417;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.scan-student-wrapper .main-wrapper .scan-new-student-header{
+    font-size: 17px;
+    color: #141417;
+    opacity: .6;
+    font-weight: 700;
+    padding: 0px 15px 30px 15px;
+}
+
+
+.scan-student-wrapper .main-wrapper .scan-new-wrapper .scan-student{
+    padding: 15px 15px 25px 15px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #141417;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.scan-student-wrapper .main-wrapper .scan-new-wrapper form{
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.scan-student-wrapper .main-wrapper .scan-new-wrapper form input{
+    padding: 10px 15px;
+    border-radius: 8px;
+    width: 100%;
+    position: relative;
+    outline: none;
+    border: 1px solid #141417;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.scan-student-wrapper .main-wrapper .scan-new-wrapper form button{
+    max-width: 200px;
+    padding: 10px 0px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    background: #151161;
+    color: #cacaeb;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.set-course-wrapper .main-wrapper form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.set-course-wrapper .main-wrapper form *{
+    color: #141417;
+    font-size: 17px;
+}
+
+.set-course-wrapper .main-wrapper form button#add-question{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 8px;
+    position: absolute;
+    right: 0;
+    background: #151161;
+    color: #cacaeb;
+    font-size: 15px;
+}
+
+.set-course-wrapper .main-wrapper form button#add-question i{
+    font-size: 15px;
+    color: #cacaeb;
+}
+
+.set-course-wrapper .main-wrapper form input{
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #141417;
+}
+
+.set-course-wrapper .main-wrapper form input[name=optA],
+.set-course-wrapper .main-wrapper form input[name=optB],
+.set-course-wrapper .main-wrapper form input[name=optC],
+.set-course-wrapper .main-wrapper form input[name=optD],
+.set-course-wrapper .main-wrapper form input[name=answer]
+{
+    max-width: 500px;
+    padding: 15px 25px;
+    margin-bottom: 15px;
+}
+
+.set-course-wrapper .main-wrapper form #course-name{
+    max-width: 100px;
+    margin-bottom: 50px;
+    padding: 10px 15px;
+}
+
+.set-course-wrapper .main-wrapper form textarea{
+    min-height: 150px;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px 25px;
+}
+
+.logout-button{
+    position: absolute;
+    top:50px;
+    right: 40px;
+}
+
+.logout-button button{
+    outline: none;
+    border: none;
+    background: #141417;
+    border-radius: 8px;
+    color: #cacaeb;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 10px 20px;
+}

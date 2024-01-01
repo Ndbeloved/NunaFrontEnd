@@ -15,6 +15,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins';
+            user-select: none;
         }
         body{
             display: grid;
@@ -178,6 +179,19 @@
         studentName.innerHTML = student.name
         studentReg.innerHTML = student.reg
         studentCourse.innerHTML = localStorage.getItem('course')
+
+
+        //prevents inspect mode
+        document.addEventListener('contextmenu', function(event){
+            event.preventDefault()
+        })
+
+        document.addEventListener('keydown', function(event){
+            if((event.ctrlKey && event.shiftKey && event.key == 'I') || (event.metaKey && event.altKey && event.key === 'I')){
+                event.preventDefault();
+                alert('inspect mode triggered')
+            }
+        })
     </script>
 </body>
 </html>

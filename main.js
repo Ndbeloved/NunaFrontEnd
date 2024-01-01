@@ -203,7 +203,6 @@ document.addEventListener('DOMContentLoaded', async()=>{
 
     async function submitAnswers(answers){
         try{
-            console.log(answers)
             const URL = 'http://localhost:3000/cbt-exam/submit';
             const response = await fetch(URL, {
                 method: 'post',
@@ -211,7 +210,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
                     'Authorization': localStorage.getItem('token'),
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({answers: answers}),
+                body: JSON.stringify({answers: answers, reg: student.reg, course: data.questions[0].course}),
             })
 
             if(response.ok){
@@ -271,4 +270,16 @@ document.addEventListener('DOMContentLoaded', async()=>{
         }
         progressBar.style.setProperty('--degree', percentage+'deg');
     },1000)
+
+    //prevents inspect mode
+    document.addEventListener('contextmenu', function(event){
+        event.preventDefault()
+    })
+
+    document.addEventListener('keydown', function(event){
+        if((event.ctrlKey && event.shiftKey && event.key == 'I') || (event.metaKey && event.altKey && event.key === 'I')){
+            event.preventDefault();
+            alert('inspect mode triggered')
+        }
+    })
 })

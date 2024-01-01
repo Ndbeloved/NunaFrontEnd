@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Admin Dashboard">
+    <meta name="description" content="School admin dashboard">
+    <link rel="stylesheet" href="admin-dashboard.css" type="text/css">
+    <link rel ="stylesheet" href="modifiedFontAwesome/css/all.css"/>
+    <script src="admin-dashboard.js" defer></script>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+    <section class="action-bar">
+
+        <div class="fixed">
+            <!--profile icon and name-->
+            <div class="profile-details-wrapper">
+                <div id="profile-image"></div>
+                <div id="profile-name">
+                    <p id="name">Erastus Beloved</p>
+                    <p id="role">admin</p>
+                </div>
+            </div>
+
+            <!--Quick links-->
+            <div class="quick-links-wrapper">
+                <div class="register-course flex">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <p>Set questions</p>
+                </div>
+
+                <div class="open-course flex">
+                    <i class="fa-solid fa-lock-open"></i>
+                    <p>Open courses</p>
+                </div>
+
+                <div class="register-student flex">
+                    <i class="fa-solid fa-person-circle-check"></i>
+                    <p>Register student</p>
+                </div>
+
+                <div class="scan-student flex">
+                    <i class="fa-solid fa-barcode"></i>
+                    <p>Scan student</p>
+                </div>
+
+                <div class="courses-list flex active">
+                    <i class="fa-solid fa-book"></i>
+                    <p>Courses</p>
+                </div>
+
+                <div class="logout-menu flex">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <p>Logout</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="page-wrapper">
+
+        <!--List Approved courses-->
+        <div class="courses-list-wrapper dynamic visible">
+            
+            <div id="header">
+                <h1>Approved Courses</h1>
+            </div>
+
+            <div class="course-table">
+                <!--Column 1-->
+                <div class="revoke-btn-column columns">
+                    <div id="header">
+                        <h3>revoke</h3>
+                    </div>
+
+                    <!--Dummy values-->
+                    <div class="revoke-btn rows">
+                        <button>Revoke</button>
+                    </div>
+                    <div class="revoke-btn rows">
+                        <button>Revoke</button>
+                    </div>
+                    <div class="revoke-btn rows">
+                        <button>Revoke</button>
+                    </div>
+                    <div class="revoke-btn rows">
+                        <button>Revoke</button>
+                    </div>
+                </div>
+                <!--Column 2-->
+                <div class="approved-by-column columns">
+                    <div id="header">
+                        <h3>approved by</h3>
+                    </div>
+
+                    <!--Dummy values-->
+                    <div class="aprroved-by rows">
+                        <p>Ugochukwu Jude</p>
+                    </div>
+                    <div class="aprroved-by rows">
+                        <p>Agnes Maryjane</p>
+                    </div>
+                    <div class="aprroved-by rows">
+                        <p>Ugochukwu Jude</p>
+                    </div>
+                    <div class="aprroved-by rows">
+                        <p>Ugochukwu Jude</p>
+                    </div>
+
+                </div>
+
+                <!--Column 3-->
+                <div class="course-name-column columns">
+                    <div id="header">
+                        <h3>course</h3>
+                    </div>
+                    
+                    <!--Dummy value-->
+                    <div class="course-name rows">
+                        <p>CSC201</p>
+                    </div>
+                    <div class="course-name rows">
+                        <p>PHY201</p>
+                    </div>
+                    <div class="course-name rows">
+                        <p>GST201</p>
+                    </div>
+                    <div class="course-name rows">
+                        <p>STA201</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!---Set questions---->
+        <div class="set-course-wrapper dynamic">
+            <div id="header">
+                <h1>Set questions</h1>
+            </div>
+
+            <div class="main-wrapper">
+                <form id="form">
+                    <button id="add-question">Add &nbsp;&nbsp; <i class="fa-solid fa-plus"></i></button>
+                    <input id="course-name" name="course" placeholder="Course" required>
+                    <textarea name="que" id="question" placeholder="Set questions..." required></textarea>
+                    <input type="text" name="optA" placeholder="Option A" required>
+                    <input type="text" name="optB" placeholder="Option B" required>
+                    <input type="text" name="optC" placeholder="Option C" required>
+                    <input type="text" name="optD" placeholder="Option D" required>
+                    <input type="text" name="answer" placeholder="Answer" required>
+                </form>
+            </div>
+        </div>
+
+        <!---Open a course---->
+        <div class="open-course-wrapper dynamic">
+            <div id="header">
+                <h1>Open course for cbt</h1>
+            </div>
+
+            <div class="main-wrapper">
+                <div class="open-course-list-wrapper">
+                    <!--Dummy values-->
+                    <div class="open-course-header">
+                        inProgress
+                    </div>
+                    <!--dynamically inserts courses-->
+                </div>
+
+                <div class="open-new-wrapper">
+                    <div class="open-course-header">
+                        Closed courses
+                    </div>
+                    <!--dynamically inserts courses-->
+                </div>
+            </div>
+        </div>
+
+
+
+        <!----Register student-->
+        <div class="register-student-wrapper dynamic">
+            <div id="header">
+                <h1>Register new students</h1>
+            </div>
+
+            <div class="main-wrapper">
+                <div class="register-new-student-wrapper">
+                    <!--Dummy values-->
+                    <div class="register-new-student-header">
+                        registered students
+                    </div>
+                    <!--dynamically inserts courses-->
+                </div>
+
+                <div class="register-new-wrapper">
+                    <div class="register-new-student-header">
+                        Register New student
+                    </div>
+                    
+                    <form id="register-student-form">
+                        <input id="new-student" name="name" placeholder="Enter name of new student" required>
+                        <input id="new-student" name="academicSection" placeholder="Enter academic year" required>
+                        <button>Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!----Scan student-->
+        <div class="scan-student-wrapper dynamic">
+            <div id="header">
+                <h1>Scan students</h1>
+            </div>
+
+            <div class="main-wrapper">
+                <div class="scan-new-student-wrapper">
+                    <!--Dummy values-->
+                    <div class="register-new-student-header">
+                        registered students
+                    </div>
+                    <!--dynamically inserts courses-->
+                </div>
+
+                <div class="scan-new-wrapper">
+                    <div class="scan-new-student-header">
+                        Scan student
+                    </div>
+                    
+                    <form id="scan-student-form">
+                        <input id="new-student" name="reg" placeholder="Enter student Reg. number">
+                        <input id="new-student" name="course" placeholder="Enter course">
+                        <button>Scan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--logout button-->
+        <div class="logout-button">
+            <button>Logout</button>
+        </div>
+    </section>
+</body>
+</html>
