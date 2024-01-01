@@ -1,4 +1,24 @@
 document.addEventListener('DOMContentLoaded', async()=>{
+    //verifies Jwt
+    const urlVerify = 'http://localhost:3000/official'
+    const token = localStorage.getItem('token')
+    if(token == null || token == 'undefined' || token == undefined){
+        window.location.href = 'admin-login.html';
+    };
+    const data = {
+        token
+    }
+    const response = await fetch(urlVerify,{
+        method: 'get',
+        headers: {
+            'Authorization': token,
+            'Content-Type': 'application/json'
+        } 
+    })
+    if(response.ok){
+        const data = await response.json()
+        console.log(data)
+    }
     //containers
     const coursesContainer = document.querySelector('.courses-list-wrapper');
     const openCoursesContainer = document.querySelector('.open-course-wrapper');
@@ -314,5 +334,14 @@ document.addEventListener('DOMContentLoaded', async()=>{
             const message = 'Check internet connection';
             console.log(message)
         }
+    })
+
+    //handles logout
+    document.querySelector('.logout-button').addEventListener('click', ()=>{
+        window.location.href = 'admin-login.html';
+    })
+
+    document.querySelector('.logout-menu flex').addEventListener('click', ()=>{
+        window.location.href = 'admin-login.html';
     })
 })

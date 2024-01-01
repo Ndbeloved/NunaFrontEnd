@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin login</title>
+
+    <style>
+        @font-face {
+    font-family: "poppins";
+    src: url('Poppins-regular.ttf');
+    }
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "poppins";
+        user-select: none;
+    }
+
+    body{
+        display: grid;
+        place-items: center;
+        position: relative;
+        height: 100vh;
+        width: 100%;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 60%;
+    }
+
+    form input{
+        width: 100%;
+        border-radius: 10px;
+        padding: 10px 20px;
+        outline: none;
+        border: 1px solid #141417;
+        margin-bottom: 20px;
+    }
+
+    button{
+        max-width: 200px;
+        padding: 10px 0px;
+        font-size: 15px;
+        color: #c4c4e1;
+        background: #141417;
+        border-radius: 10px;
+        outline: none;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    
+    <form id="form">
+        <input type="text" name="name" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button>Login</button>
+    </form>
+
+
+    <script>
+        localStorage.clear();
+        const form = document.querySelector('#form')
+
+        form.addEventListener('submit', async(e)=>{
+            e.preventDefault();
+            const formData = new FormData(e.target)
+            const data = {
+                name: formData.get('name'),
+                password: formData.get('password'),
+            };
+
+            try{
+                const response = await fetch('http://localhost:3000/official/login',{
+                    method: 'post',
+                    headers:{
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+
+                if(response.ok){
+                    const data = await response.json();
+                    const message = data.message
+                    const token = data.token
+                    localStorage.setItem('token', token)
+                    window.location.href = 'admin-dashboard.html';
+                }
+                if(response.status == 404){
+                    const data = await response.json();
+                    const message = data.message
+                    console.log(message)
+                }
+            }
+            catch(err){
+                const message = "Check connection";
+                console.log(message)
+            }
+        })
+    </script>
+</body>
+</html>

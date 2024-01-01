@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
     const successMessage = document.getElementById('success-message');
     const errorMessage = document.getElementById('error-message');
     const submitBtn = document.querySelector('.submitTest');
+    let examTime = 20;
     async function getQuestions(){
         try{
             const response = await fetch('http://localhost:3000/cbt-exam', {
@@ -50,6 +51,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
     let data = await getQuestions()
     localStorage.setItem("questions", JSON.stringify(data));
     let student = data.student
+    examTime = parseInt(data.time);
     let questionCount = 1;
 
     data.questions.forEach((question, index)=>{
@@ -248,7 +250,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
     //handles time
     const progressBar = document.getElementById('progress');
     const dynamicTime = document.getElementById('dynamic-time')
-    let time = 30; //Exam time in minutes, will be fetching from backend database
+    let time = examTime; //Exam time in minutes, will be fetching from backend database
     let startTime  = new Date();
     let stopTime;
     if(localStorage.getItem('stopageTime') == null || localStorage.getItem('stopageTime') == 'undefined'){
@@ -271,7 +273,7 @@ document.addEventListener('DOMContentLoaded', async()=>{
         progressBar.style.setProperty('--degree', percentage+'deg');
     },1000)
 
-    //prevents inspect mode
+    // //prevents inspect mode
     document.addEventListener('contextmenu', function(event){
         event.preventDefault()
     })
